@@ -86,18 +86,85 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 **Preguntas**
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
+
+Crea 8 recursos:
+
+![](images/recursos.png)
+	
 2. ¿Brevemente describa para qué sirve cada recurso?
+
+	La maquina virtual es el recurso que ofrece Azure para alojar la aplicación sin tener una hardware fisico.
+
+	La llave ssh junto con el grupo de seguridad son los encargados de mantener y gestionar la  seguridad de la maquina virtual a traves de reglas de seguridad que permiten o deniegan el tráfico de red entrante o el tráfico de red saliente de varios tipos de recursos de Azure
+
+	Network Watcher está diseñado para monitorear y reparar el estado de la red de los productos IaaS (infraestructura como servicio) que incluye máquinas virtuales, redes virtuales, puertas de enlace de aplicaciones, balanceadores de carga, etc.
+
+	VNet permite que muchos tipos de recursos de Azure, como Azure Virtual Machines (VM), se comuniquen de forma segura entre sí, con Internet y con las redes locales.
+
+	La direccion ip publica nos permite cominicarnos remotamente con la maquina virtual.
+
+	El disco nos permite tener almacenamiento en la maquina virtual.
+
+	Una interfaz de red permite que una VM de Azure se comunique con Internet, Azure y recursos locales.
+	
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
+	
+	Al cerrar la conexión tambien terminamos el proceso del "FibonacciApp.js" y al ser este el proceso que inicia la aplicaciones esta se cae.
+	
+	Debemos crear un *Inbound port rule* para permitir que el acceso al servicio al publico.
+	
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
+
+	![](images/tabla.png)
+	
+	![](images/tabla1.png)
+	
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
+
+	![](images/cpu.png)
+	
+	Antes del escalamiento vertical el consumo de cpu llega a 100% ya que esta presenta una capacidad reducida, al realizar el escalamiento vertical aumentamos la capacidad de la cpu por lo que
+	el consumo llega solamente al 45%.
+	
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
+	
+	Antes de escalar
+	
+	![](images/antes.png)
+	
+	Despues de escalar
+	
+	![](images/despues.png)
+	
+	Podemos ver una mejora considerable en el tiempo de respuesta.
+	
     * Si hubo fallos documentelos y explique.
+	
+		Antes de escalar fallan algunas peticiones por el alto consumo que presenta la cpu, despues de escalar se presentan algunos fallos aparentemente por la alta concurrencia
+	
 7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
+
+	El tamaño de VM de la serie B, B1ls, tiene la memoria más pequeña y el costo más bajo entre las instancias de Azure. B1ls tiene 512 MiB de memoria y 1 vCPU.
+	B1ls es mejor para servidores web pequeños, bases de datos pequeñas y entornos de desarrollo y prueba. Ofrece una forma rentable de implementar cargas de trabajo que no necesitan el rendimiento completo de la CPU de forma continua y aumentan su rendimiento.
+	
+	El tamaño de VM de la serie B, B2ms, B2ms tiene 8 GiB de memoria y 2 vCPU.
+	
 8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+	
+	En un escenario inicial si seria una buena solución al mejorar la capacidad de procesamiento. Cuando cambiamos el tamaño de la vm los tiempos de respuesta mejoran al igual que la carga a la cpu.
+
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
+	
+	El costo de dicha infraestructura aumenta por lo que es mas cara de mantener.
+	
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
+
+	Hubo mejora en ambos aspectos ya que con el nuevo tamaña la maquina virtual tiene una mejor cpu con mas capacidad.
+
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
+
+	El comportamiento si es porcentualmente mejor ya que presenta menos fallos.
 
 ### Parte 2 - Escalabilidad horizontal
 
