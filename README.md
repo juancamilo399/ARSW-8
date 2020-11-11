@@ -340,6 +340,12 @@ desde el mismo equipo cliente van al mismo punto de conexión del centro de dato
 	alguna zona de disponibilidad.
 
 * ¿Cuál es el propósito del *Network Security Group*?
+	
+	Un Network Security Group consta de un conjunto de reglas de control de acceso que describen los
+	filtros de tráfico. Estos pueden asociarse con una máquina virtual o una subred en la misma región.
+	Las reglas definidas en el grupo de seguridad de red actúan como filtros. En la ruta de ingreso, se
+	aplican antes de que el tráfico ingrese a la VM.
+
 * Informe de newman 1 (Punto 2)
 * Presente el Diagrama de Despliegue de la solución.
 
