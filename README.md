@@ -349,6 +349,8 @@ desde el mismo equipo cliente van al mismo punto de conexión del centro de dato
 * Informe de newman 1 (Punto 2)
 * Presente el Diagrama de Despliegue de la solución.
 
+![](images/part2/despliegue.PNG)
+
 
 
 
