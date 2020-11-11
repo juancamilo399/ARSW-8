@@ -366,7 +366,7 @@ Cada solicitud se demoro en promedio 27.2 segundos donde 4 solicitudes fallaron.
    | Total |            | $67.01 |
 
 
-### Resultados Newman con Escalabilidad Horizontal
+### Pruebas con Escalabilidad Horizontal
 
 ![](images/2.png)
 
