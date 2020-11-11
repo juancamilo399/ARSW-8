@@ -286,8 +286,59 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 	pruebas de estado nuevamente.
 
 * ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
+
+
+
+	**Distribución basada en hash**
+	El modo de distribución predeterminado para Azure Load Balancer es un hash de tupla de cinco
+	elementos.
+	La tupla consta de:
+		
+	* IP de origen
+		
+	* Puerto de origen
+		
+	* IP de destino
+		
+	* Puerto de destino
+		
+	* Tipo de protocolo
+	
+	El hash se utiliza para asignar el tráfico a los servidores disponibles. El algoritmo solo proporciona
+	adherencia dentro de una sesión de transporte. Los paquetes que se encuentran en la misma
+	sesión se dirigen a la misma dirección IP del centro de datos tras el punto de conexión con
+	equilibrio de carga. Cuando el cliente inicia una nueva sesión desde la misma IP de origen, el
+	puerto de origen cambia y provoca que el tráfico vaya hacia otro punto de conexión del centro de
+	datos.
+	
+	**Modo de afinidad de IP de origen**
+	El modo utiliza un hash de tupla de dos elementos (IP de origen e IP de destino) o de tres
+elementos (IP de origen, IP de destino y tipo de protocolo) para asignar el tráfico a los servidores
+disponibles. Mediante el uso de la afinidad de la IP de origen, las conexiones que se han iniciado
+desde el mismo equipo cliente van al mismo punto de conexión del centro de datos.
+
 * ¿Qué es una *Virtual Network*? ¿Qué es una *Subnet*? ¿Para qué sirven los *address space* y *address range*?
-* ¿Qué son las *Availability Zone* y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea *zone-redundant*?
+
+	Azure Virtual Network (VNet) es el bloque de construcción fundamental para su red privada en Azure. VNet permite que muchos tipos de recursos de Azure, como Azure Virtual Machines (VM), se comuniquen de forma segura entre sí, con Internet y con las redes locales.
+	
+	las subredes permiten segmentar la red virtual en una o más subredes y asignar una parte del espacio de direcciones de la red virtual a cada subred.
+	
+	Al crear una red virtual, se debe especificar un espacio de direcciones IP privado personalizado utilizando direcciones públicas y privadas (RFC 1918). Azure asigna a los recursos de una red virtual una dirección IP privada desde el espacio de direcciones.
+	
+	
+
+* ¿Qué son las Availability Zone y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea zone-redundant?
+
+	Las zonas de disponibilidad son ubicaciones aisladas de errores en una región de Azure que
+	proporcionan alimentación, refrigeración y funcionalidad de red redundantes. Estas zonas
+	permiten ejecutar aplicaciones críticas con alta disponibilidad y tolerancia a errores en los
+	centros de datos.
+	
+	Seleccionamos 3 zonas de disponibilidad diferentes para tener la capacidad de aislar las
+	máquinas virtuales dentro de tres centros de datos diferentes. Esto proporciona zonas de
+	disponibilidad múltiples y previene una caída total del sistema en caso de algún fallo en
+	alguna zona de disponibilidad.
+
 * ¿Cuál es el propósito del *Network Security Group*?
 * Informe de newman 1 (Punto 2)
 * Presente el Diagrama de Despliegue de la solución.
