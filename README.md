@@ -374,15 +374,15 @@ Cada solicitud se demoro en promedio 27.6 segundos donde ninguna solicitud fall�
 
 #### Costo de la infraestructura
 
-   | Tipo de Servicio  | Descripción | Costo  |
-   |-- ----------------|-----|-----------------|
-   | Virtual Machines  | 3 B1LS, Linux – Ubuntu, 0 managed OS disks – S4, 100 transaction units; 5 GB Bandwidth | $12.48 |
-   | Virtual Network               | 100 GB data transfer from East US region to East US region | $2.00 |
+   | Recurso | Descripción | Costo |
+   |------|-----|-----------------|
+   | Virtual Machines | 3 B1LS, Linux – Ubuntu, 0 managed OS disks – S4, 100 transaction units; 5 GB Bandwidth | $12.48 |
+   | Virtual Network | 100 GB data transfer from East US region to East US region | $2.00 |
    | IP Addresses | 4 Dynamic IP Addresses, 1 Static IP Addresses | $11.39 |
-   | Storage Accounts | Managed Disks, Standard HDD, S4 Disk Type 1 Disks, Pay as you go | $1.59 |
-   | Load Balancer | Basic Load Balancer | $0.00 |
-   | Total |              | $27.46 |
+   | Storage Accounts | Managed Disks, Standard HDD, S4 Disk Type 1 Disks | $1.59 |
+   | Total |            | $27.46 |
 
+   
 
 ### Uso cpu
 
