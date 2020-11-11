@@ -347,6 +347,72 @@ desde el mismo equipo cliente van al mismo punto de conexión del centro de dato
 	aplican antes de que el tráfico ingrese a la VM.
 
 * Informe de newman 1 (Punto 2)
+
+
+### Pruebas con Escalabilidad Vertical
+
+![](images/despues.png)
+
+Cada solicitud se demoro en promedio 27.2 segundos donde 4 solicitudes fallaron.
+
+#### Costo de la infraestructura
+
+   | Recurso | Descripción | Costo |
+   |------|-----|-----------------|
+   | Virtual Machines | 1 B2MS; Linux – Ubuntu, 0 managed OS disks – S4, 100 transaction units, 5 GB Bandwidth | $60.79 |
+   | Virtual Network | 100 GB data transfer from East US region to East US region | $2.00 |
+   | IP Addresses | 0 Dynamic IP Addresses, 1 Static IP Addresses | $2.63 |
+   | Storage Accounts | Managed Disks, Standard HDD, S4 Disk Type 1 Disks | $1.59 |
+   | Total |            | $67.01 |
+
+
+### Resultados Newman con Escalabilidad Horizontal
+
+![](images/2.png)
+
+Cada solicitud se demoro en promedio 27.6 segundos donde ninguna solicitud falló.
+
+#### Costo de la infraestructura
+
+   | Tipo de Servicio  | Descripción | Costo  |
+   |-- ----------------|-----|-----------------|
+   | Virtual Machines  | 3 B1LS, Linux – Ubuntu, 0 managed OS disks – S4, 100 transaction units; 5 GB Bandwidth | $12.48 |
+   | Virtual Network               | 100 GB data transfer from East US region to East US region | $2.00 |
+   | IP Addresses | 4 Dynamic IP Addresses, 1 Static IP Addresses | $11.39 |
+   | Storage Accounts | Managed Disks, Standard HDD, S4 Disk Type 1 Disks, Pay as you go | $1.59 |
+   | Load Balancer | Basic Load Balancer | $0.00 |
+   | Total |              | $27.46 |
+
+
+### Uso cpu
+
+
+![](images/vm1.png)
+
+VM1 consumo de CPU promedio de 60.47%
+
+![](images/vm2.png)
+
+VM2 consumo de CPU promedio de 48.10%
+
+![](images/vm3.png)
+
+VM3 consumo de CPU promedio de 31.8%
+
+![](images/vm4.png)
+
+VM4 consumo de CPU promedio de 10.08%
+
+### Conclusiones
+
+   * Entre los dos enfoques de escalabilidad no hubo mucha diferencia respecto a los tiempos de ejecución, en la infraestructura con escalabilidad vertical se presentaron varios casos fallidos, mientras que con escalabilidad horizontal no se presentaron fallos.
+   
+   * Una solución con escalabilidad vertical cuesta más del doble que una con escalabilidad horizontal y en caso de realizar otro escalamiento vertical esta diferencia se ve aumentada.
+      
+   * En cuanto a este laboratorio es mejor realizar una implementación con escalabilidad horizontal que una con escalabilidad vertical ya que al poseer varios nodos y un balanceador de carga se reduce la probabilidad de que ocurran errores cuando se presentan varias solicitudes concurrentes.
+
+
+
 * Presente el Diagrama de Despliegue de la solución.
 
 ![](images/part2/despliegue.PNG)
